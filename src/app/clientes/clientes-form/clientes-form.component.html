@@ -4,25 +4,32 @@
         <li class="breadcrumb-item active">Cadastro</li>
     </ol>
 
-    <form class="container">
+    <!--#clienteForm="ngForm" => criando uma variavel de template e atribuindo o ngForm-->
+    <!--(ngSubmit) = "onSubmit()" => Fazendo um event data binding para o evento de ngSubmit-->
+    <!--E assim que o Angular lida com formularios...-->
+    <form #clienteForm="ngForm" (ngSubmit) = "onSubmit()" class="container">
         <div class="row">
             <div class="col-md-6 form-group">
                 <label>Id:</label>
-                <input type="text" class="form-control" disabled />
+                <!--Fazendo data-binding [ngModel] = cliente.id-->
+                <input type="text" class="form-control" [ngModel] = cliente.id name="id"
+                     disabled />
             </div>
             <div class="col-md-6 form-group">
                 <label>Data de cadastro:</label>
-                <input type="text" class="form-control" disabled />
+                <input type="text" class="form-control" [ngModel] = cliente.dataCadastro name="dataCadastro" 
+                    disabled />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 form-group">
                 <label>Nome:</label>
-                <input type="text" class="form-control" />
+                <!--Fazendo two-way data-binding [(ngModel)] = cliente.nome-->
+                <input type="text" class="form-control" [(ngModel)] = cliente.nome name="nome" />
             </div>
             <div class="col-md-6 form-group">
                 <label>CPF:</label>
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" [(ngModel)] = cliente.cpf name="cpf" />
             </div>
         </div>
         <div class="row">
