@@ -7,29 +7,41 @@
     <!--#clienteForm="ngForm" => criando uma variavel de template e atribuindo o ngForm-->
     <!--(ngSubmit) = "onSubmit()" => Fazendo um event data binding para o evento de ngSubmit-->
     <!--E assim que o Angular lida com formularios...-->
-    <form #clienteForm="ngForm" (ngSubmit) = "onSubmit()" class="container">
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()" class="container">
+        <!--Feedback do cadastro-->
         <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success animeLeft" role="alert" *ngIf="success;else Errors">
+                    Cliente cadastrado/atualizado com sucesso!
+                </div>
+                <!--E preciso um ng-template para referenciar o a variavel de template em um *ngIf-->
+                <ng-template #Errors>
+                    <div class="alert alert-danger animeLeft" role="alert" *ngFor='let erro of errors'>
+                        {{erro}}
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="row grow" *ngIf="success">
             <div class="col-md-6 form-group">
                 <label>Id:</label>
                 <!--Fazendo data-binding [ngModel] = cliente.id-->
-                <input type="text" class="form-control" [ngModel] = cliente.id name="id"
-                     disabled />
+                <input type="text" class="form-control" [ngModel]=cliente.id name="id" disabled />
             </div>
             <div class="col-md-6 form-group">
                 <label>Data de cadastro:</label>
-                <input type="text" class="form-control" [ngModel] = cliente.dataCadastro name="dataCadastro" 
-                    disabled />
+                <input type="text" class="form-control" [ngModel]=cliente.dataCadastro name="dataCadastro" disabled />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 form-group">
                 <label>Nome:</label>
                 <!--Fazendo two-way data-binding [(ngModel)] = cliente.nome-->
-                <input type="text" class="form-control" [(ngModel)] = cliente.nome name="nome" />
+                <input type="text" class="form-control" [(ngModel)]=cliente.nome name="nome" />
             </div>
             <div class="col-md-6 form-group">
                 <label>CPF:</label>
-                <input type="text" class="form-control" [(ngModel)] = cliente.cpf name="cpf" />
+                <input type="text" class="form-control" [(ngModel)]=cliente.cpf name="cpf" />
             </div>
         </div>
         <div class="row">
