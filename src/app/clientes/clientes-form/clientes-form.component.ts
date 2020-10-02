@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 
 @Component({
@@ -10,12 +11,13 @@ export class ClientesFormComponent implements OnInit {
 
   cliente: Cliente = new Cliente();
 
-  constructor() { }
+  constructor(private clientesService: ClientesService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(){
-    console.log(this.cliente)
+    this.clientesService.save(this.cliente)
+                      .subscribe( res => console.log(res));
   }
 }
