@@ -14,6 +14,10 @@ export class ClientesService {
       return this.httpClient.post<Cliente>('http://localhost:8080/api/clientes', cliente);
   }
 
+  update(cliente: Cliente): Observable<Cliente>{
+    return this.httpClient.put<Cliente>(`http://localhost:8080/api/clientes/${cliente.id}`, cliente);
+}
+
   getClientes(): Observable<Cliente[]>{
     return this.httpClient.get<Cliente[]>("http://localhost:8080/api/clientes");
   }

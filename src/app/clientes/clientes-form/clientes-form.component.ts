@@ -43,18 +43,30 @@ export class ClientesFormComponent implements OnInit {
     //O  subscribe recebe tres callback's.
     //O de sucesso, o de erro e um que sera sempre executado.
     //E analogo ao then, catch e finallly do fetch
-    this.clientesService.save(this.cliente)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.success = true;
-          this.cliente.id = res.id;
-          this.cliente.dataCadastro = res.dataCadastro;
-        },
-        errorRes => {
-          this.errors = errorRes.error.errors;
-          this.success = false;
-        }
-      );
+    if(this.edit){
+      this.clientesService.update(this.cliente)
+        .subscribe(
+          res => {
+            this.success = true;
+            this.cliente = res;
+          },
+          errorRes => {
+            this.errors = errorRes.error.errors;
+            this.success = false;
+          }
+        )
+    }else{
+      this.clientesService.save(this.cliente)
+        .subscribe(
+          res => {
+            this.success = true;
+            this.cliente = res;
+          },
+          errorRes => {
+            this.errors = errorRes.error.errors;
+            this.success = false;
+          }
+        );
+    }
   }
 }
