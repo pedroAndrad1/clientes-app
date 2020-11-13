@@ -1,7 +1,7 @@
 <div class="animeLeft">
     <h1 class="mt-4">Clientes</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Cadastro</li>
+        <li class="breadcrumb-item active">{{ edit? 'Edição' : 'Cadastro' }}</li>
     </ol>
 
     <!--#clienteForm="ngForm" => criando uma variavel de template e atribuindo o ngForm-->
@@ -22,7 +22,7 @@
                 </ng-template>
             </div>
         </div>
-        <div class="row grow" *ngIf="success">
+        <div class="row grow" *ngIf="success || edit">
             <div class="col-md-6 form-group">
                 <label>Id:</label>
                 <!--Fazendo data-binding [ngModel] = cliente.id-->
@@ -45,10 +45,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-success">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" *ngIf = "!edit; else atualizarButton">
                     <i class="fa fa-save"></i>
                     Salvar
+                </button>
+                <ng-template #atualizarButton>
+                    <button type="submit" class="btn btn-primary" >
+                        <i class="fa fa-sync-alt"></i>
+                        Atualizar
+                    </button>
+                </ng-template>
+                <button type="button" class="btn btn-danger ml-2" routerLink="/clientes-lista">
+                    <i class="fa fa-arrow-alt-circle-left"></i>
+                    Voltar
                 </button>
             </div>
         </div>
