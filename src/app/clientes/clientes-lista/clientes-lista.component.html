@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <button class="btn btn-warning" routerLink = "/clientes-form">
+                <button class="btn btn-warning" routerLink="/clientes-form">
                     <i class="fa fa-plus"></i> Novo
                 </button>
             </div>
@@ -30,8 +30,15 @@
                             <td>{{ cliente.cpf }}</td>
                             <td>{{ cliente.dataCadastro }}</td>
                             <td>
-                                <button class="btn btn-primary" routerLink= "/clientes-form/{{ cliente.id }}"> 
+                                <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
                                     <i class="fa fa-edit"></i>
+                                </button>
+                                <button 
+                                    class="btn btn-danger ml-2" 
+                                    data-toggle="modal" 
+                                    data-target="#modalDelecao"
+                                    (click) = "preparaDelecao(cliente)">
+                                    <i class="fa fa-trash"></i>
                                 </button>
                             </td>
                         </tr>
@@ -41,3 +48,30 @@
         </div>
     </div>
 </div>
+
+<!--Modal para delecao de clientes-->
+<div id="modalDelecao" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Deleção de cliente</h4>
+            </div>
+
+            <div class="modal-body">
+                Tem certeza que deseja deletar {{ clienteSelecionado? clienteSelecionado.nome : "" }} ?
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success">
+                    Deletar
+                </button>
+
+                <button class="btn btn-primary ml">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

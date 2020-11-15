@@ -10,12 +10,17 @@ import { Cliente } from '../cliente';
 export class ClientesListaComponent implements OnInit {
 
   clientes: Cliente[] = [];
+  clienteSelecionado: Cliente; //Cliente selecionada para delecao
 
   constructor(private clientesService: ClientesService) { }
 
 
   ngOnInit(): void {
    this.clientesService.getClientes().subscribe(res => this.clientes = res);
+  }
+
+  preparaDelecao(cliente: Cliente): void{
+    this.clienteSelecionado = cliente
   }
 
 }

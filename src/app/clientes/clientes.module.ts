@@ -6,13 +6,12 @@ import { ClientesFormComponent } from './clientes-form/clientes-form.component';
 import { FormsModule } from '@angular/forms';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
 
-
 @NgModule({
   declarations: [ClientesFormComponent, ClientesListaComponent],
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [ClientesFormComponent, ClientesListaComponent]
 })
