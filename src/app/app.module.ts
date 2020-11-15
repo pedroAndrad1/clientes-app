@@ -10,7 +10,8 @@ import { ClientesService } from './clientes.service';
 //Modulo para fazer requisicoes http. No Angular e usado Observable's em vez de Promisse's. Esses sao um
 //pouco diferentes, mas a ideia e a mesma.
 import {HttpClientModule} from '@angular/common/http'
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http'
     AppRoutingModule,
     TemplateModule,
     ClientesModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
     
   ],
   providers: [ClientesService],

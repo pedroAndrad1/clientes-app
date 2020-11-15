@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col-md-12">
-                <table class="table table-condensed table-hover">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-condensed table-hover" wt-responsive-table="">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -31,10 +31,10 @@
                             <td>{{ cliente.dataCadastro }}</td>
                             <td>
                                 <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
-                                    <i class="fa fa-edit"></i>
+                                    <i class="fa fa-pen"></i>
                                 </button>
                                 <button 
-                                    class="btn btn-danger ml-2" 
+                                    class="btn btn-danger delete-button" 
                                     data-toggle="modal" 
                                     data-target="#modalDelecao"
                                     (click) = "preparaDelecao(cliente)">
@@ -62,11 +62,11 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-success">
+                <button class="btn btn-danger" (click) = "deletaCliente()" data-dismiss="modal">
                     Deletar
                 </button>
 
-                <button class="btn btn-primary ml">
+                <button class="btn btn-primary ml" data-dismiss="modal">
                     Cancelar
                 </button>
             </div>
