@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
+import { ServicoPrestadoService } from './servico-prestado.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.modul
     ToastrModule.forRoot(), // ToastrModule added
     ServicoPrestadoModule
   ],
-  providers: [ClientesService],
+  //Providers (classes) para serem injetados
+  providers: [ClientesService, ServicoPrestadoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,21 @@
     </ol>
     <div class="container">
         <form #form="ngForm" (submit)=onSubmit()>
+            <!--Feedback-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success animeLeft" role="alert" *ngIf="success;else Errors">
+                        Serviço cadastrado com sucesso!
+                    </div>
+                    <!--E preciso um ng-template para referenciar o a variavel de template em um *ngIf-->
+                    <ng-template #Errors>
+                        <div class="alert alert-danger animeLeft" role="alert" *ngFor='let erro of errors'>
+                            {{erro}}
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -39,7 +54,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Data:</label>
-                    <input type="text" class="form-control" name="data" [(ngModel)] = "servico.data" >
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        name="data" 
+                        [(ngModel)] = "servico.data" 
+                        >
                 </div>
                 <div class="col-md-6">
                     <label>Valor</label>

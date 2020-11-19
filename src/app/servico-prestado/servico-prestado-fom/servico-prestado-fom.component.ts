@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from 'src/app/clientes/cliente';
+import { ServicoPrestadoService } from 'src/app/servico-prestado.service';
 import { ServicoPrestado } from '../servico-prestado';
 
 @Component({
@@ -12,7 +13,13 @@ export class ServicoPrestadoFomComponent implements OnInit {
 
   clientes: Cliente[];
   servico: ServicoPrestado = new ServicoPrestado();
-  constructor(private clientesService: ClientesService) { }
+  success = false;
+  errors: String[];
+
+  constructor(
+    private clientesService: ClientesService,
+    private servicoPrestadoService: ServicoPrestadoService
+    ) { }
 
   ngOnInit(): void {
     this.clientesService.getClientes()
@@ -22,6 +29,18 @@ export class ServicoPrestadoFomComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.servico);
+    this.servicoPrestadoService.salvar(this.servico)
+      .subscribe(
+        res => {
+          this.success = true;
+          this.errors = [];
+          //Limpando o formulario
+          this.servico = new ServicoPrestado();
+        },
+        errorRes => {
+          this.errors = errorRes.error.errors;
+          this.success = false;
+        }
+      );
   }
 }
