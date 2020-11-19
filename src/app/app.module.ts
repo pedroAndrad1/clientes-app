@@ -12,6 +12,7 @@ import { ClientesService } from './clientes.service';
 import {HttpClientModule} from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
-    
+    ServicoPrestadoModule
   ],
   providers: [ClientesService],
   bootstrap: [AppComponent]

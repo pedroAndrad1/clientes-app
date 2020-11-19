@@ -1,0 +1,24 @@
+<div class="animeLeft">
+    <h1 class="mt-4">Clientes</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Servicos</li>
+    </ol>
+    <div class="container">
+        <form #form="ngForm" (submit) = onSubmit()>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Cliente:</label>
+                        <select class="form-control">
+                            <option value="" >Selecione...</option>
+                            <!--ngValue pois e um objeto-->
+                            <option *ngFor = "let cliente of clientes" [ngValue]="cliente.id">
+                                {{ cliente.nome }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
