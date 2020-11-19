@@ -1,24 +1,62 @@
 <div class="animeLeft">
-    <h1 class="mt-4">Clientes</h1>
+    <h1 class="mt-4">Serviços</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Servicos</li>
+        <li class="breadcrumb-item active">Novo</li>
     </ol>
     <div class="container">
-        <form #form="ngForm" (submit) = onSubmit()>
+        <form #form="ngForm" (submit)=onSubmit()>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="">Cliente:</label>
-                        <select class="form-control">
-                            <option value="" >Selecione...</option>
+                        <label>Cliente:</label>
+                        <!--
+                            [(ngModel)] = "objeti.propertie" faz um two-way data binding, o valor do select
+                            sera o servico.clienteId e vice-cersa. O mesmo vale para os inputs.
+                            [ngModelOptions] = "{standalone: true}", para podermos ligar com objetos no select
+                        -->
+                        <select 
+                            class="form-control"
+                            [(ngModel)] = "servico.clienteId"
+                            [ngModelOptions] = "{standalone: true}" 
+                        >
+                            <option value="" disabled>Selecione...</option>
                             <!--ngValue pois e um objeto-->
-                            <option *ngFor = "let cliente of clientes" [ngValue]="cliente.id">
+                            <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">
                                 {{ cliente.nome }}
                             </option>
                         </select>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Descrição:</label>
+                    <input type="text" class="form-control" name="descricao" [(ngModel)] = "servico.descricao">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Data:</label>
+                    <input type="text" class="form-control" name="data" [(ngModel)] = "servico.data" >
+                </div>
+                <div class="col-md-6">
+                    <label>Valor</label>
+                    <input type="text" class="form-control" name="valor" [(ngModel)] = "servico.valor">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-success mt-4">
+                        <i class="fa fa-save"></i>
+                        Salvar
+                    </button>
+                </div>
+            </div>
+
+
         </form>
     </div>
 </div>
