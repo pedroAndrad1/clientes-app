@@ -6,6 +6,7 @@ import { ServicoPrestadoFomComponent } from './servico-prestado-fom/servico-pres
 import { ServicoPrestadoListaComponent } from './servico-prestado-lista/servico-prestado-lista.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { TemplateModule } from '../template/template.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ServicoPrestadoRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    TemplateModule
   ],
   exports:[
     ServicoPrestadoFomComponent, 

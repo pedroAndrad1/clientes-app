@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,4 +17,16 @@ export class ServicoPrestadoService {
     return this.httpClient.post<ServicoPrestado>(this.API_URL, servico);
   }
 
+  buscar(nome: string, mes: Number): Observable<ServicoPrestado[]>{
+
+    if(!nome){
+      nome = "";
+    }
+
+    const params = new HttpParams().set("nome", nome).set("mes", mes.toString());
+    const url = this.API_URL + "?" + params.toString();
+
+    return this.httpClient.get<ServicoPrestado[]>(url);
+
+  }
 }

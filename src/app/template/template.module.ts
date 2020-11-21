@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { TituloComponent } from './titulo/titulo.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     NavbarComponent,
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+    TituloComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     NavbarComponent,
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+    TituloComponent
   ]
 })
 export class TemplateModule { }
