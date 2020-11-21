@@ -20,11 +20,45 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <button class="btn btn-primary" type="submit">
                     <i class="fa fa-search"></i>
                     Pesquisar
                 </button>
+                <button class="btn btn-warning ml-2" routerLink="/servico-prestado-form">
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-warning animeLeft mt-4" role="alert" *ngIf="semServicos">
+                    Não há registros de serviços!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-condensed table-hover" wt-responsive-table="">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let servico of servicos" class="animeLeft">
+                            <td>{{ servico.cliente.nome }}</td>
+                            <td>{{ servico.descricao }}</td>
+                            <td>{{ servico.valor }}</td>
+                            <td>{{ servico.data }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </form>

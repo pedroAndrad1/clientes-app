@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ServicoPrestadoService } from 'src/app/servico-prestado.service';
+import { ServicoPrestadoRegistro } from './servico-prestado-registro';
 
 @Component({
   selector: 'app-servico-prestado-lista',
@@ -60,8 +62,9 @@ export class ServicoPrestadoListaComponent implements OnInit {
 
   nome: string;
   mes: number;
-
-  constructor(private servicoPrestadoService: ServicoPrestadoService) { }
+  servicos: ServicoPrestadoRegistro[];
+  semServicos = false;
+  constructor(private servicoPrestadoService: ServicoPrestadoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -71,7 +74,17 @@ export class ServicoPrestadoListaComponent implements OnInit {
     console.log(this.nome,this.mes);
     this.servicoPrestadoService.buscar(this.nome, this.mes)
       .subscribe(
-        res => console.log(res)
+        res =>{
+          console.log(res);
+          
+          if(res.length == 0){
+            this.semServicos = true;
+          }else{
+            this.servicos = res;
+            this.semServicos = false;
+          }
+        },
+        error => this.toastr.error("Não foi possível realizar a pesquisa.", "Erro")
       )
   }
 
