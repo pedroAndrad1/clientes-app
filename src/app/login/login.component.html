@@ -12,7 +12,24 @@
                             </div>
                             <div class="card-body">
                                 <form #loginForm="ngForm" (submit)="onSubmit()">
-
+                                    <div class="row" *ngIf="cadastroSuccess">
+                                        <div class="col-md-12">
+                                            <div 
+                                                class="alert alert-success animeLeft" 
+                                                role="alert" >
+                                                Cadastro Realizado com sucesso.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="cadastroError">
+                                        <div class="col-md-12">
+                                            <div 
+                                                class="alert alert-danger animeLeft" 
+                                                role="alert" >
+                                                erro
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row" *ngIf="loginError">
                                         <div class="col-md-12">
                                             <div 
@@ -51,7 +68,7 @@
                                             Login
                                         </button>
                                         <ng-template #Cadastrando>
-                                            <button class="btn btn-success">
+                                            <button type="button" class="btn btn-success" (click) = cadastrar()>
                                                 Cadastrar
                                             </button>
                                             <button class="btn btn-danger" (click)="cancelaCadastro()">
