@@ -13,8 +13,8 @@ export class LoginComponent {
   password: string;
   loginError: boolean;
   cadastroSuccess = false;
-  cadastroError = false;
   cadastrando = false;
+  errors = [];
 
   constructor(
     private authService: AuthService
@@ -32,6 +32,12 @@ export class LoginComponent {
 
   cancelaCadastro(){
     this.cadastrando = false;
+    //Para tirar as mensagens da tela de cadastro
+    this.cadastroSuccess = false;
+    this.errors = null;
+    //Limpando o form
+    this.userName = "";
+    this.password = "";
   }
 
   cadastrar(){
@@ -44,11 +50,13 @@ export class LoginComponent {
                                   .subscribe(
                                     res => {
                                       this.cadastroSuccess = true;
-                                      this.cadastroError = false;
+                                      this.errors = null;
                                     },
-                                    error =>{
+                                    errorRes =>{
                                       this.cadastroSuccess = false;
-                                      this.cadastroError = true;
+                                      this.errors = null;
+                                      console.log(errorRes);
+                                      this.errors = errorRes.error.errors;
                                     }
                                   )
     
