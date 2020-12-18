@@ -31,4 +31,8 @@ export class ServicoPrestadoService {
     return this.httpClient.get<ServicoPrestadoRegistro[]>(url);
 
   }
+
+  buscarTodos():Observable<ServicoPrestadoRegistro[]>{
+    return this.httpClient.get<ServicoPrestadoRegistro[]>(`${this.API_URL}/all`);
+  }
 }

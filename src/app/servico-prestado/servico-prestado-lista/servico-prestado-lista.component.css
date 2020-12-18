@@ -1,0 +1,10 @@
+.botao-novo{
+    margin-left: 8px;
+}
+
+@media(max-width: 405px){
+    .botao-novo{
+        margin-left: 0px;
+        margin-top: 8px;
+    }
+}

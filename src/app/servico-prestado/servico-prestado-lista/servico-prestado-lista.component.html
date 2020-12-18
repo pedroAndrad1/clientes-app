@@ -20,12 +20,16 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <button class="btn btn-primary" type="submit">
                     <i class="fa fa-search"></i>
                     Pesquisar
                 </button>
-                <button class="btn btn-warning ml-2" routerLink="/servicos-prestados/form">
+                <button class="btn btn-secondary ml-2" type="button" (click) = "ngOnInit()">
+                    <i class="fa fa-align-justify"></i>
+                    Todos os serviços
+                </button>
+                <button class="btn btn-warning botao-novo" routerLink="/servicos-prestados/form">
                     <i class="fa fa-plus"></i> Novo
                 </button>
             </div>

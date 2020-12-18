@@ -67,7 +67,17 @@ export class ServicoPrestadoListaComponent implements OnInit {
   constructor(private servicoPrestadoService: ServicoPrestadoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    
+    this.servicoPrestadoService.buscarTodos()
+      .subscribe(
+        res =>{
+          if(res.length == 0){
+            this.semServicos = true;
+          }else{
+            this.servicos = res;
+            this.semServicos = false;
+          }
+        }
+      )
   }
 
   onSubmit(){
@@ -75,10 +85,9 @@ export class ServicoPrestadoListaComponent implements OnInit {
     this.servicoPrestadoService.buscar(this.nome, this.mes)
       .subscribe(
         res =>{
-          console.log(res);
-          
           if(res.length == 0){
             this.semServicos = true;
+            this.servicos = [];
           }else{
             this.servicos = res;
             this.semServicos = false;
