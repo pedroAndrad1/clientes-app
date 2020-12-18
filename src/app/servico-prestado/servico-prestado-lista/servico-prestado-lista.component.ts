@@ -67,7 +67,7 @@ export class ServicoPrestadoListaComponent implements OnInit {
   constructor(private servicoPrestadoService: ServicoPrestadoService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    
   }
 
   onSubmit(){
