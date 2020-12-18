@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Usuario } from './login/usuario';
@@ -11,8 +12,13 @@ export class AuthService {
 
   private API_URL = environment.API_BASE + "/api/usuarios";
   private TOKEN_URL = environment.API_BASE + environment.TOKEN_URL;
+  //Para fazer um injecao de depedencia do JwtHelperService e necessario um provider dele
+  //Entao estou instanciado aqui mesmo que e mais simples
+  private jwtHelperService = new JwtHelperService();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+    ) { }
 
   salvar(usuario: Usuario): Observable<any>{
     return this.httpClient.post<any>(this.API_URL, usuario);
@@ -36,5 +42,24 @@ export class AuthService {
 
     return this.httpClient.post<any>(this.TOKEN_URL, params.toString(), {headers});
     
+  }
+
+  //Verifica se o user esta autenticado
+  isAutheticated(): boolean{
+
+    const tokenString = localStorage.getItem("access_token");
+
+    //Caso tenha token, verificando se ele nao esta expirado
+    if(tokenString){
+
+      const token = JSON.parse(tokenString).access_token;
+      //True para expirado e false para nao, entao e so eu retornar o inverso disso.
+      const expired = this.jwtHelperService.isTokenExpired(token);
+      return !expired;
+    }
+
+    //Se nem tem token, entao nao esta autenticado
+    return false;
+
   }
 }
