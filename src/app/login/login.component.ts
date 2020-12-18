@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Usuario } from './usuario';
 
@@ -17,14 +18,20 @@ export class LoginComponent {
   errors = [];
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   onSubmit(){
     this.authService.login(this.userName, this.password)
                     .subscribe(
-                      res => console.log("deu tudo certo"),
-                      resError => this.errors.push("Usuário ou senha inválidos")
+                      res =>{
+                        //Salvando o token no locaStorage
+                        const access_token = JSON.stringify(res);
+                        localStorage.setItem("access_token", access_token );
+                        this.router.navigate(['home']);
+                      },
+                      resError => this.errors.push("Usuário ou senha inválido")
                     );
   }
 
@@ -38,7 +45,7 @@ export class LoginComponent {
     this.cadastrando = false;
     //Para tirar as mensagens da tela de cadastro
     this.cadastroSuccess = false;
-    this.errors = null;
+    this.errors = [];
     //Limpando o form
     this.userName = "";
     this.password = "";

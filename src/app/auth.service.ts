@@ -34,7 +34,7 @@ export class AuthService {
                           .set("password", password)
                           .set("grant_type", "password");
 
-    return this.httpClient.post<any>(this.TOKEN_URL, params.toString(), {headers: headers});
+    return this.httpClient.post<any>(this.TOKEN_URL, params.toString(), {headers});
     
   }
 }
