@@ -18,8 +18,11 @@ export class TokenInterceptor implements HttpInterceptor {
     //pegando o token do localStorage
     const tokenString = localStorage.getItem("access_token");
 
-    //Verificando se tem token, se tiver, add no header.
-    if(tokenString){
+    const url = request.url;
+
+    //Verificando se tem token, se tiver e a request nao for para pegar o token, add no header.
+    //Se a request for para pegar o token, ela tem as credencias da app no header
+    if(tokenString && !url.endsWith("oauth/token")){
       const token = JSON.parse(tokenString);
       const jwt = token.access_token;
 
