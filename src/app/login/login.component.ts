@@ -21,12 +21,16 @@ export class LoginComponent {
   ) { }
 
   onSubmit(){
-    console.log(this.userName, this.password);
+    this.authService.login(this.userName, this.password)
+                    .subscribe(
+                      res => console.log("deu tudo certo"),
+                      resError => this.errors.push("Usuário ou senha inválidos")
+                    );
   }
 
   preparaCadastro(event){
     event.preventDefault();
-
+    this.errors = [];
     this.cadastrando = true;
   }
 

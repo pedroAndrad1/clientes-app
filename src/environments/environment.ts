@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  API_BASE: "http://localhost:8080"
+  API_BASE: "http://localhost:8080",
+  TOKEN_URL:"/oauth/token",
+  CLIENT_ID:"app-vendas-pedro-andrade",
+  CLIENT_SECRET: "acai-com-leite-em-po"
 };
 
 /*
