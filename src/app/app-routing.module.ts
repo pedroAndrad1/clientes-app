@@ -9,9 +9,9 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   {
     path: "", component: LayoutComponent, children: [
-      { path: "home", component: HomeComponent, canActivate:[AuthGuard] }, 
+      //{ path: "home", component: HomeComponent, canActivate:[AuthGuard] }, 
       //Para evitar o acesso ao LayoutComponent sem seus filhos
-      {path: "", redirectTo:"/home", pathMatch: "full"},   
+      {path: "", redirectTo:"/clientes/lista", pathMatch: "full"},   
     ]
   },
 ];

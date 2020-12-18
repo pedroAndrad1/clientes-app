@@ -29,7 +29,7 @@ export class LoginComponent {
                         //Salvando o token no locaStorage
                         const access_token = JSON.stringify(res);
                         localStorage.setItem("access_token", access_token );
-                        this.router.navigate(['home']);
+                        this.router.navigate(['clientes/lista']);
                       },
                       resError => this.errors.push("Usuário ou senha inválido")
                     );
