@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/auth.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit{
 
   username: String;
 
@@ -19,5 +19,6 @@ export class SidenavComponent implements OnInit {
   logout(): void{
     this.authService.logout();
   }
+
 
 }

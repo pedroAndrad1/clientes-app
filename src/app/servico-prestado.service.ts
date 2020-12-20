@@ -35,4 +35,8 @@ export class ServicoPrestadoService {
   buscarTodos():Observable<ServicoPrestadoRegistro[]>{
     return this.httpClient.get<ServicoPrestadoRegistro[]>(`${this.API_URL}/all`);
   }
+
+ // topFiveServicoValor(){
+ //   return this.httpClient.get<ServicoPrestadoRegistro[]>(`${this.API_URL}/top-five`);
+ // }
 }
