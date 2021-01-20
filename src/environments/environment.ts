@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_BASE: "http://localhost:8080", //localhost:8080 //https://clientes-api-projeto.herokuapp.com
+  API_BASE: "https://clientes-api-projeto.herokuapp.com", //http:localhost:8080 //https://clientes-api-projeto.herokuapp.com
   TOKEN_URL:"/oauth/token",
   CLIENT_ID:"app-vendas-pedro-andrade",
   CLIENT_SECRET: "acai-com-leite-em-po"
