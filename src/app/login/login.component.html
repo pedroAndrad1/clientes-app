@@ -64,19 +64,26 @@
                                     <div 
                                         class="form-group d-flex align-items-center 
                                         justify-content-between mt-4 mb-0">
-                                        <button class="btn btn-primary fade-in" *ngIf="!cadastrando; else Cadastrando">
-                                            Login
-                                        </button>
+                                            <button class="btn btn-primary fade-in" 
+                                                *ngIf="!cadastrando; else Cadastrando">
+                                                {{!loading? 'Login' : 'Carregando...' }}
+                                            </button>
                                         <ng-template #Cadastrando>
-                                            <button type="button" class="btn btn-success fade-in" (click) = cadastrar()>
+                                            <button type="button" class="btn btn-success fade-in" 
+                                                    (click) = cadastrar() *ngIf="!loading; else Loading">
                                                 Cadastrar
                                             </button>
-                                            <button class="btn btn-danger fade-in" (click)="cancelaCadastro()">
+                                            <button class="btn btn-danger fade-in" (click)="cancelaCadastro()"
+                                                    *ngIf="!loading" >
                                                 Voltar
                                             </button>
+                                            <ng-template #Loading>
+                                                <button class="btn btn-warning fade-in" disabled>
+                                                    Carregando...
+                                                </button>
+                                            </ng-template>
                                         </ng-template>
                                     </div>
-
                                 </form>
                             </div>
                             <div class="card-footer text-center">
